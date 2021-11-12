@@ -1,0 +1,22 @@
+.MakeAdmin {
+    height: 55vh;
+    margin-top: 50px;
+}
+.MakeAdmin h2 {
+    margin-bottom: 20px;
+}
+.MakeAdmin input {
+    width: 60%;
+    margin-bottom: 20px;
+    border: 1px solid #0D6EFD;
+    border-radius: 5px;
+}
+
+.MakeAdmin .submit {
+    background: #0D6EFD;
+    color: #fff;
+    transition: all linear .3s;
+}
+.MakeAdmin .submit:hover {
+    background: #198754;
+}
