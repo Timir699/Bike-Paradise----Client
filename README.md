@@ -1,6 +1,6 @@
 # Bike Paradise -- Client-Side
 
-Live Link: [Khaja Tours & Travel (Client)](https://khaja-travels.web.app/)
+Live Link: [Bike Paradise (Client)](https://final-project-f1977.web.app/)
 
 About the Site: 
 
