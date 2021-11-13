@@ -1,0 +1,21 @@
+import { createContext, useEffect, useState } from "react";
+
+export const DisplayContext = createContext()
+
+const DisplayProvider = ({children}) => {
+    const [displayBikes, setDisplayBikes] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:5000/api/businessPackages')
+        .then( res => res.json())
+        .then(data => setDisplayBikes(data))
+    }, [])
+
+    return (
+        <DisplayContext.Provider value={{displayBikes, setDisplayBikes}} >
+            {children}
+        </DisplayContext.Provider>
+    )
+}
+
+export default DisplayProvider

@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div>
             <Banner />
-            <Bikes />
+            <Bikes isHome={true} />
             <Reviews />
             <Address />
         </div>

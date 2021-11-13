@@ -26,6 +26,7 @@ const Header = () => {
                             Signed in as: <span>{user.displayName || user.email}</span>
                         </Navbar.Text>
                         <Button as={Link} to="/Login" style = {{display: user?.email ? "none" : "block"}}variant="outline-primary">Login</Button>
+                        {/* <Button as={Link} to="/adminLogin" style = {{display: user?.email ? "none" : "block"}}variant="outline-primary">Admin Login</Button> */}
                         {user?.email && <Button onClick={logout} variant="outline-primary">Logout</Button>}
                         {user.email ? <Button as={Link} to="/dashboard" variant="outline-primary">Dashboard</Button> : ""}
                     </Nav>

@@ -10,6 +10,8 @@ import Bikes from './Bikes/Bikes'
 import Dashboard from './Dashboard/Dashboard';
 import PlaceOrder from './PlaceOrder/PlaceOrder';
 import OrderConfirmed from './OrderConfirmed/OrderConfirmed';
+import NotFound from '../Components/NotFound/NotFound'
+import AdminLogin from './AdminLogin/AdminLogin';
 
 const Components = () => {
     return (
@@ -32,6 +34,9 @@ const Components = () => {
                     <Route path="/register">
                         <Register />
                     </Route>
+                    <Route path="/adminLogin">
+                        <AdminLogin />
+                    </Route>
                     <PrivateRoute path="/dashboard">
                         <Dashboard />
                     </PrivateRoute>
@@ -41,6 +46,9 @@ const Components = () => {
                     <PrivateRoute path="/orderConfirmed">
                         <OrderConfirmed />
                     </PrivateRoute>
+                    <Route path="*">
+                        <NotFound />
+                    </Route>
                 </Switch>
                 <Footer />
             </BrowserRouter>

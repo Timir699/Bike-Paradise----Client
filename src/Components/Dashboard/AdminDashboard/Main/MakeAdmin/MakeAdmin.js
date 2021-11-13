@@ -7,6 +7,13 @@ const MakeAdmin = () => {
     const { register, handleSubmit, reset  } = useForm();
 
     const onSubmit = formResult => {
+        const role = 'admin'
+        const data = {...formResult, role}
+        fetch('http://localhost:5000/api/users', {
+            method: 'POST',
+            headers: { 'content-type' : 'application/json'},
+            body: JSON.stringify(data)
+        })
         reset()
     };
     return (

@@ -14,8 +14,7 @@ const Login = () => {
     const history = useHistory()
 
     // hooks
-    const { signInWithGoogle, signInWithGithub, createWithEmail, user, registerLogin, setRegisterLogin, error, signInWithEmail, success, setSuccess, setError, setUser } = useAuth()
-
+    const { signInWithGoogle, signInWithGithub, createWithEmail, user, registerLogin, setRegisterLogin, error, signInWithEmail, success, setSuccess, setError, setUser, setUserId, setUserData,userData  } = useAuth()
 
     // component State
     const [isLogin, setIsLogin] = useState(false)
@@ -47,7 +46,23 @@ const Login = () => {
     const signInWithGoogleHandler = () => {
         signInWithGoogle()
             .then(result => {
-                history.push(location.state?.from || '/')
+                setUser(result.user)
+                const email = result.user.email
+                fetch('http://localhost:5000/api/users', {
+                    method: 'POST',
+                    headers: { 'content-type' : 'application/json'},
+                    body: JSON.stringify({email})
+                })
+                .then( res => res.json())
+                .then( id => {
+                    setUserId(id)
+                    fetch(`http://localhost:5000/api/users/${id}`)  
+                    .then( (res) => res.json())
+                    .then( (data) => {
+                        setUserData(data)
+                    })
+                })
+                history.push(location.state?.from || '/dashboard')
                 setSuccess("Successfully Registered")
                 setError('')
             })

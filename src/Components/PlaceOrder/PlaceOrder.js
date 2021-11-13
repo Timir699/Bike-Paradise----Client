@@ -2,8 +2,10 @@ import React from 'react';
 import { Button, Container } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import useDisplay from '../../Hooks/useDisplay';
 
 const PlaceOrder = () => {
+    const {} = useDisplay()
 
     const history = useHistory();
     const { register, handleSubmit, reset } = useForm();
@@ -15,11 +17,10 @@ const PlaceOrder = () => {
             reset()
             history.push('/orderConfirmed')
         }
-        
     }
     return (
+
         <Container>
-            
         <div className="text-center mt-3">
                 <h2>Enter Your Shipping address</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>

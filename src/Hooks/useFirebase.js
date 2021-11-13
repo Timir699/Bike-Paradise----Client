@@ -1,6 +1,7 @@
 import initFirebase from "../Firebase/Firebase.init";
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, FacebookAuthProvider, onAuthStateChanged, GithubAuthProvider, createUserWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router";
 
 initFirebase()
 
@@ -10,6 +11,8 @@ const useFirebase = () => {
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
     const [isLoading, setIsLoading] = useState(true)
+    const [userId, setUserId] = useState()
+    const [userData, setUserData] = useState({})
 
     localStorage.setItem('loading', isLoading)
 
@@ -33,6 +36,7 @@ const useFirebase = () => {
 
     const signInWithGoogle = () => {
         setIsLoading(true)
+        
         return signInWithPopup(auth, googleProvider)
             .finally(() => setIsLoading(false))
     }
@@ -44,6 +48,22 @@ const useFirebase = () => {
         signInWithPopup(auth, githubProvider)
             .then(result => {
                 setUser(result.user)
+                fetch('http://localhost:5000/api/users', {
+                    method: 'POST',
+                    headers: { 'content-type' : 'application/json'},
+                    body: JSON.stringify({email})
+                })
+                .then( res => res.json())
+                .then( id => {
+                    setUserId(id)
+                    fetch(`http://localhost:5000/api/users/${id}`)  
+                    .then( (res) => res.json())
+                    .then( (data) => {
+                        setUserData(data)
+                        
+                    })
+                    
+                })
                 setSuccess("Successfully Registered")
                 setError('')
             }).catch((error) => {
@@ -73,6 +93,21 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 setUser(userCredential.user)
+                fetch('http://localhost:5000/api/users', {
+                    method: 'POST',
+                    headers: { 'content-type' : 'application/json'},
+                    body: JSON.stringify({email})
+                })
+                .then( res => res.json())
+                .then( id => {
+                    setUserId(id)
+                    fetch(`http://localhost:5000/api/users/${id}`)  
+                    .then( (res) => res.json())
+                    .then( (data) => {
+                        setUserData(data)
+                    })
+                })
+                
                 localStorage.setItem('user', userCredential.user)
                 console.log(user);
                 verifyEmail()
@@ -93,7 +128,20 @@ const useFirebase = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 setUser(userCredential.user)
-                localStorage.setItem('user', userCredential.user)
+                fetch('http://localhost:5000/api/users', {
+                    method: 'POST',
+                    headers: { 'content-type' : 'application/json'},
+                    body: JSON.stringify({email})
+                })
+                .then( res => res.json())
+                .then( id => {
+                    setUserId(id)
+                    fetch(`http://localhost:5000/api/users/${id}`)  
+                    .then( (res) => res.json())
+                    .then( (data) => {
+                        setUserData(data)
+                    })
+                })
                 console.log(user);
                 setSuccess("Successfully Login")
                 setError('')
@@ -153,6 +201,7 @@ const useFirebase = () => {
                 setUser(user)
             } else {
                 setUser({})
+               
             }
             setIsLoading(false)
         })
@@ -177,7 +226,11 @@ const useFirebase = () => {
         resetPass,
         isLoading,
         setIsLoading,
-        logout
+        logout,
+        setUserId,
+        userId,
+        setUserData,
+        userData
     }
 }
 

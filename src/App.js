@@ -1,13 +1,20 @@
 import './App.css';
 import Components from './Components/Components';
 import AuthProvider from './Context/AuthProvider';
+import DisplayProvider from './Context/DisplayProvider';
+import ReviewProvider from './Context/ReviewProvider';
 
 function App() {
   return (
     <div className="App">
-        <AuthProvider>
-          <Components />
-        </AuthProvider>
+
+      <ReviewProvider>
+        <DisplayProvider>
+          <AuthProvider>
+            <Components />
+          </AuthProvider>
+        </DisplayProvider>
+      </ReviewProvider>
     </div>
   );
 }

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Route, Switch, Link, useHistory, useRouteMatch, useParams } from 'react-router-dom';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 
 import AddProduct from './AddProducts/AddProduct';
 import MakeAdmin from './MakeAdmin/MakeAdmin';
+import ManageOrders from './ManageOrders/ManageOrders';
 import ManageProducts from './ManageProducts/ManageProducts';
-import OrderManage from './OrderManage/OrderManage';
 
 const Main = () => {
-    let { path, url } = useRouteMatch();
+    let { path } = useRouteMatch();
     return (
         <div>
              <Switch>
@@ -15,7 +15,7 @@ const Main = () => {
                         <ManageProducts />
                     </Route>
                     <Route path={`${path}/manageAllOrders`}>
-                        <OrderManage />
+                        <ManageOrders />
                     </Route>
                     <Route path={`${path}/addproduct`}>
                         <AddProduct />
@@ -23,7 +23,6 @@ const Main = () => {
                     <Route path={`${path}/makeAnAdmin`}>
                         <MakeAdmin />
                     </Route>
-                    
                 </Switch>
                 
         </div>

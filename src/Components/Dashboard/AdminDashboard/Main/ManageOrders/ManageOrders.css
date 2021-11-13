@@ -1,0 +1,11 @@
+.manage-orders {
+    margin-top: 50px;
+    min-height: 70vh;
+}
+.manage-orders img {
+    width: 75px;
+    height: 50px;
+}
+.flex-grow {
+    width: 20%;
+}
