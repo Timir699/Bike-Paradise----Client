@@ -5,10 +5,11 @@ import UserDashboard from './UserDashboard/UserDashboard';
 
 const Dashboard = () => {
     const {userData} = useAuth()
-    console.log(userData);
+    console.log(userData.role);
     return (
         <div>
-            {userData?.role === 'admin' ? <AdminDashboard /> : <UserDashboard /> }
+             <AdminDashboard />
+              <UserDashboard /> 
         </div>
     );
 };

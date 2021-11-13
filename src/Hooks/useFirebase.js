@@ -140,9 +140,10 @@ const useFirebase = () => {
                     .then( (res) => res.json())
                     .then( (data) => {
                         setUserData(data)
+                        console.log(userData);
                     })
                 })
-                console.log(user);
+                
                 setSuccess("Successfully Login")
                 setError('')
             })

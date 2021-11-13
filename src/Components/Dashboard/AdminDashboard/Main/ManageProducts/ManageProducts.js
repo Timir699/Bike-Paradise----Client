@@ -15,7 +15,7 @@ const ManageProducts = () => {
                 .then( res => res.json() )
                 .then( data => setDisplayBikes(data) )
             } )
-    }
+    } 
     return (
         <div className="mt-5">
             <h2>Manage Products</h2>
