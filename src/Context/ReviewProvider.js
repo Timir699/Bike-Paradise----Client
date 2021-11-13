@@ -7,7 +7,7 @@ const ReviewProvider = ({ children }) => {
     const [Reviews, setReviews] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/reviews')
+        fetch('https://bike-paradise.herokuapp.com/api/reviews')
         .then( res => res.json())
         .then( data => setReviews(data))
     }, [])

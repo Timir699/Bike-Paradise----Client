@@ -13,7 +13,7 @@ const Bikes = ({isHome}) => {
     const sendToDb = bike => {
         const {title, image, price} = bike;
         const bikeObj = {title, image, price, email}
-        fetch('http://localhost:5000/api/orders', {
+        fetch('https://bike-paradise.herokuapp.com/api/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

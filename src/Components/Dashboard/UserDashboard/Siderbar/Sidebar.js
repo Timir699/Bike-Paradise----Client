@@ -20,7 +20,7 @@ const Sidebar = () => {
         history.push('/')
     }
     const userFetcher = () => {
-        fetch(`http://localhost:5000/api/users/${userId}`)
+        fetch(`https://bike-paradise.herokuapp.com/api/users/${userId}`)
         .then( res => res.json())
         .then ( data => {
             console.log(data);

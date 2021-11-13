@@ -8,7 +8,7 @@ const AddProduct = () => {
     const { register, handleSubmit, reset  } = useForm();
 
     const onSubmit = formResult => {
-        fetch("http://localhost:5000/api/businessPackages", { 
+        fetch("https://bike-paradise.herokuapp.com/api/businessPackages", { 
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -16,7 +16,7 @@ const AddProduct = () => {
             body: JSON.stringify(formResult)
         })
         .then (data => {
-            fetch("http://localhost:5000/api/businessPackages")
+            fetch("https://bike-paradise.herokuapp.com/api/businessPackages")
             .then ( res => res.json())
             .then( data => {
                 console.log(data);

@@ -14,7 +14,7 @@ const UserReview = () => {
 
     const onSubmit = data => {
         
-        fetch("http://localhost:5000/api/reviews", { 
+        fetch("https://bike-paradise.herokuapp.com/api/reviews", { 
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -22,7 +22,7 @@ const UserReview = () => {
             body: JSON.stringify({...data, email})
         })
         .then (data => {
-            fetch("http://localhost:5000/api/reviews")
+            fetch("https://bike-paradise.herokuapp.com/api/reviews")
             .then ( res => res.json())
             .then( data => {
                 console.log(data);

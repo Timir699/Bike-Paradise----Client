@@ -48,7 +48,7 @@ const useFirebase = () => {
         signInWithPopup(auth, githubProvider)
             .then(result => {
                 setUser(result.user)
-                fetch('http://localhost:5000/api/users', {
+                fetch('https://bike-paradise.herokuapp.com/api/users', {
                     method: 'POST',
                     headers: { 'content-type' : 'application/json'},
                     body: JSON.stringify({email})
@@ -56,7 +56,7 @@ const useFirebase = () => {
                 .then( res => res.json())
                 .then( id => {
                     setUserId(id)
-                    fetch(`http://localhost:5000/api/users/${id}`)  
+                    fetch(`https://bike-paradise.herokuapp.com/api/users/${id}`)  
                     .then( (res) => res.json())
                     .then( (data) => {
                         setUserData(data)
@@ -93,7 +93,7 @@ const useFirebase = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 setUser(userCredential.user)
-                fetch('http://localhost:5000/api/users', {
+                fetch('https://bike-paradise.herokuapp.com/api/users', {
                     method: 'POST',
                     headers: { 'content-type' : 'application/json'},
                     body: JSON.stringify({email})
@@ -101,7 +101,7 @@ const useFirebase = () => {
                 .then( res => res.json())
                 .then( id => {
                     setUserId(id)
-                    fetch(`http://localhost:5000/api/users/${id}`)  
+                    fetch(`https://bike-paradise.herokuapp.com/api/users/${id}`)  
                     .then( (res) => res.json())
                     .then( (data) => {
                         setUserData(data)
@@ -128,7 +128,7 @@ const useFirebase = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 setUser(userCredential.user)
-                fetch('http://localhost:5000/api/users', {
+                fetch('https://bike-paradise.herokuapp.com/api/users', {
                     method: 'POST',
                     headers: { 'content-type' : 'application/json'},
                     body: JSON.stringify({email})
@@ -136,7 +136,7 @@ const useFirebase = () => {
                 .then( res => res.json())
                 .then( id => {
                     setUserId(id)
-                    fetch(`http://localhost:5000/api/users/${id}`)  
+                    fetch(`https://bike-paradise.herokuapp.com/api/users/${id}`)  
                     .then( (res) => res.json())
                     .then( (data) => {
                         setUserData(data)

@@ -48,7 +48,7 @@ const Login = () => {
             .then(result => {
                 setUser(result.user)
                 const email = result.user.email
-                fetch('http://localhost:5000/api/users', {
+                fetch('https://bike-paradise.herokuapp.com/api/users', {
                     method: 'POST',
                     headers: { 'content-type' : 'application/json'},
                     body: JSON.stringify({email})
@@ -56,7 +56,7 @@ const Login = () => {
                 .then( res => res.json())
                 .then( id => {
                     setUserId(id)
-                    fetch(`http://localhost:5000/api/users/${id}`)  
+                    fetch(`https://bike-paradise.herokuapp.com/api/users/${id}`)  
                     .then( (res) => res.json())
                     .then( (data) => {
                         setUserData(data)

@@ -6,7 +6,7 @@ const DisplayProvider = ({children}) => {
     const [displayBikes, setDisplayBikes] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/businessPackages')
+        fetch('https://bike-paradise.herokuapp.com/api/businessPackages')
         .then( res => res.json())
         .then(data => setDisplayBikes(data))
     }, [])
