@@ -55,6 +55,7 @@ const useFirebase = () => {
                 })
                 .then( res => res.json())
                 .then( id => {
+                    console.log(id);
                     setUserId(id)
                     fetch(`https://bike-paradise.herokuapp.com/api/users/${id}`)  
                     .then( (res) => res.json())

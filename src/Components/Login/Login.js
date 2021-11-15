@@ -46,27 +46,37 @@ const Login = () => {
     const signInWithGoogleHandler = () => {
         signInWithGoogle()
             .then(result => {
+                console.log(result);
                 setUser(result.user)
                 const email = result.user.email
                 fetch('https://bike-paradise.herokuapp.com/api/users', {
                     method: 'POST',
-                    headers: { 'content-type' : 'application/json'},
+                    headers: { 'Content-type' : 'application/json'},
                     body: JSON.stringify({email})
                 })
-                .then( res => res.json())
+                .then( res => {
+                    console.log(res);
+                    return res.json()
+                })
                 .then( id => {
+                    console.log(id)
                     setUserId(id)
                     fetch(`https://bike-paradise.herokuapp.com/api/users/${id}`)  
                     .then( (res) => res.json())
                     .then( (data) => {
                         setUserData(data)
+                        history.push(location.state?.from || '/dashboard')
+                        setSuccess("Successfully Registered")
+                        setError('')
                     })
                 })
-                history.push(location.state?.from || '/dashboard')
-                setSuccess("Successfully Registered")
-                setError('')
+                .catch((err) => {
+                    console.log(err.message);
+                    console.log('Hi');
+                })
             })
             .catch((error) => {
+                console.log('Hello');
                 setSuccess('')
                 setError(error.message)
             })
